@@ -54,7 +54,21 @@ const update = (req, res) => {
 }
 
 const remove = (req, res) => {
-    res.status(200);
+    if (req.params.id !== "") {
+        const index = todoData.todos.findIndex( (element) => {
+            return element.id === Number(req.params.id);
+        } );
+    
+        if (index >= 0) {
+            todoData.todos.splice(index, 1);
+            res.status(204).send();
+        } 
+        else {
+            res.status(404).send();
+        }
+    } else {
+        res.status(400).send();
+    }
 }
 
 module.exports = { getAll, create, getById, update, remove };
