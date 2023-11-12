@@ -1,6 +1,3 @@
-//importamos el fichero con los datos que necesita nuestro Router
-// const {todos} = require('../data/index');
-
 const express = require('express');
 const todoController = require("../controllers/todo");
 
