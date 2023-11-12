@@ -7,9 +7,8 @@ const getAll = (req, res) => {
 }
 
 const create = (req, res) => {
-
-    const ids = todoData.todos.map( (e) => {
-        return e.id;
+    const ids = todoData.todos.map( (element) => {
+        return element.id;
     } );
     const id = Math.max(...ids);
     
@@ -21,7 +20,12 @@ const create = (req, res) => {
 }
 
 const getById = (req, res) => {
-    res.status(200);
+    const todo = todoData.todos.find( (element) => {
+        return element.id === Number(req.params.id);
+    } );
+    
+    if (todo) res.status(200).json(todo)
+    else res.status(404).send();
 }
 
 const update = (req, res) => {
