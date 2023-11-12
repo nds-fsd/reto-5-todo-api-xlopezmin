@@ -10,7 +10,3 @@ exports.todos = [{
   fecha: new Date("2022-05-14"),
   done: true
 }];
-
-
-
-
