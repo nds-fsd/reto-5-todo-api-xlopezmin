@@ -29,7 +29,33 @@ const getById = (req, res) => {
 }
 
 const update = (req, res) => {
-    res.status(200);
+    
+    const todoRequest = req.body;
+    let todoResponse;
+
+    console.log("todoRequest:", todoRequest);
+
+    if (Object.keys(todoRequest).length === 3) {
+        const todoResponse = todoData.todos.find( (element) => {
+            return element.id === Number(req.params.id);
+        } );
+        
+        console.log("todoResponse:", todoResponse);
+
+        if (todoResponse) {
+            todoResponse.text = todoRequest.text;
+            todoResponse.fecha = todoRequest.fecha;
+            todoResponse.done = todoRequest.done;
+
+            console.log("todoResponse 2:", todoResponse);
+            res.status(200).json(todoResponse);
+        } 
+        else {
+            res.status(404).send();
+        }
+    } else {
+        res.status(400).send();    
+    }    
 }
 
 const remove = (req, res) => {
