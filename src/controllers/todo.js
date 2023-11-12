@@ -3,7 +3,7 @@ const todoData = require('../data/index');
 
 
 const getAll = (req, res) => {
-    res.status(200);
+    res.status(200).json(todoData);
 }
 
 const create = (req, res) => {
