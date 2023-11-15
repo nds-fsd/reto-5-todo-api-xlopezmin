@@ -8,14 +8,26 @@ function validateDate(todoDate) {
 }
 
 function validateDone(done) {
-    console.log("validateDone:", typeof(done), done)
     return (String(done).toLowerCase() === "false" || String(done).toLowerCase() === "true");
 }
 
+function validateFields(body) {
+    const keys = ["text", "fecha", "done"];
+    const keysBody = Object.keys(body);
+    let result = true;
+    keysBody.forEach(key => {
+        result = Boolean(result * keys.includes(key));
+    });
+    
+    return result;
+}
 
 const validatePostToDo = (req, res, next) => {
     const todo = req.body;
 
+    if (!validateFields(todo)) {
+        res.status(400).send({message: "invalid body"});
+    }
     if (todo.text === undefined || todo.text.length === 0) {
         res.status(400).send({message: "text required"});
         return;
@@ -42,30 +54,27 @@ const validatePostToDo = (req, res, next) => {
 
 const validateUpdateToDo = (req, res, next) => {
     const todo = req.body;
-    console.log("validateUpdateToDo", todo)
 
+    if (!validateFields(todo)) {
+        res.status(400).send({message: "invalid body"});
+    }
     if (todo.text !== undefined && todo.text.length === 0) {
-        console.log("validateUpdateToDo (1)", todo.text);
         res.status(400).send({message: "text required"});
         return;
     }
     if (todo.fecha !== undefined && todo.fecha.length === 0) {
-        console.log("validateUpdateToDo (2)", todo.fecha);
         res.status(400).send({message: "date required"});
         return;
     }
     if (todo.fecha !== undefined && !validateDate(todo.fecha)) {
-        console.log("validateUpdateToDo (3)", todo.fecha);
         res.status(400).send({message: "invalid date"});
         return;
     }
     if (todo.done !== undefined && todo.done.length === 0) {
-        console.log("validateUpdateToDo (4)", todo.done);
         res.status(400).send({message: "done required"});
         return;
     }
     if ((todo.done !== undefined) && (!validateDone(todo.done) || !(typeof(todo.done) === "boolean"))){
-        console.log("validateUpdateToDo (5)", todo.done);
         res.status(400).send({message: "invalid done"});
         return;
     }
