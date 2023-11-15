@@ -12,7 +12,7 @@ function validateDone(done) {
 }
 
 
-const validateToDo = (req, res, next) => {
+const validatePostToDo = (req, res, next) => {
     const todo = req.body;
 
     if (todo.text === undefined || todo.text.length === 0) {
@@ -40,5 +40,5 @@ const validateToDo = (req, res, next) => {
 }
 
 module.exports = {
-    validateToDo
+    validatePostToDo
 }
