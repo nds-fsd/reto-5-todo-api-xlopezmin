@@ -31,26 +31,18 @@ const getById = (req, res) => {
 const update = (req, res) => {
     
     const todoRequest = req.body;
-    let todoResponse;
 
-    if (Object.keys(todoRequest).length === 3) {
-        const todoResponse = todoData.todos.find( (element) => {
-            return element.id === Number(req.params.id);
-        } );
+    let todoResponse = todoData.todos.find( (element) => {
+        return element.id === Number(req.params.id);
+    } );
 
-        if (todoResponse) {
-            todoResponse.text = todoRequest.text;
-            todoResponse.fecha = todoRequest.fecha;
-            todoResponse.done = todoRequest.done;
-
-            res.status(200).json(todoResponse);
-        } 
-        else {
-            res.status(404).send();
-        }
-    } else {
-        res.status(400).send();    
-    }    
+    if (todoResponse) {
+        Object.assign(todoResponse, todoRequest);
+        res.status(200).json(todoResponse);
+    } 
+    else {
+        res.status(404).send();
+    }
 }
 
 const remove = (req, res) => {
