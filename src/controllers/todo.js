@@ -1,9 +1,8 @@
 const express = require('express');
 const todoData = require('../data/index');
 
-
 const getAll = (req, res) => {
-    res.status(200).json(todoData);
+    res.status(200).json(todoData.todos);
 }
 
 const create = (req, res) => {
