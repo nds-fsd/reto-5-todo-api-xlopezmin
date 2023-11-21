@@ -1,12 +1,12 @@
 exports.todos = [{
   id: 0,
-  text: "Hacer la cama",
-  fecha: new Date("2022-05-21"),
+  text: "Tarea 0",
+  fecha: new Date("2023-11-01"),
   done: false
 },
 { 
   id: 1,
-  text: "Ir al super",
-  fecha: new Date("2022-05-14"),
-  done: true
+  text: "Tarea 1",
+  fecha: new Date("2023-11-02"),
+  done: false
 }];
