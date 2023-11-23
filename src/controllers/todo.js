@@ -37,6 +37,7 @@ const update = (req, res) => {
 
     if (todoResponse) {
         Object.assign(todoResponse, todoRequest);
+        console.log("todo.update(200):", todoRequest, todoResponse);
         res.status(200).json(todoResponse);
     } 
     else {

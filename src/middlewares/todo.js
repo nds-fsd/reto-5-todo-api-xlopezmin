@@ -12,7 +12,7 @@ function validateDone(done) {
 }
 
 function validateFields(body) {
-    const keys = ["text", "fecha", "done"];
+    const keys = ["text", "fecha", "done", "id"];
     const keysBody = Object.keys(body);
     let result = true;
     keysBody.forEach(key => {
