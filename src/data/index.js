@@ -44,6 +44,12 @@ exports.todos = [{
   id: 7,
   text: "TD-8: [UI] get task by state",
   fecha: "2023-11-24",
+  done: true
+},
+{ 
+  id: 8,
+  text: "TD-9: [UI] useForms",
+  fecha: "2023-11-27",
   done: false
 }
 ];
