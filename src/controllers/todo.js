@@ -2,7 +2,14 @@ const express = require('express');
 const todoData = require('../data/index');
 
 const getAll = (req, res) => {
-    res.status(200).json(todoData.todos);
+    if (Object.keys(req.query).length > 0) {
+        const response = todoData.todos.find( (element) => {
+            return element.done = req.query.done;
+        });
+        res.status(200).json(response);
+    } else {
+        res.status(200).json(todoData.todos);
+    }    
 }
 
 const create = (req, res) => {
