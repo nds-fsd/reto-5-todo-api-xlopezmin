@@ -3,8 +3,8 @@ const todoData = require('../data/index');
 
 const getAll = (req, res) => {
     if (Object.keys(req.query).length > 0) {
-        const response = todoData.todos.find( (element) => {
-            return element.done = req.query.done;
+        const response = todoData.todos.filter( (element) => {
+            return element.done.toString() === req.query.done;
         });
         res.status(200).json(response);
     } else {
